@@ -19,7 +19,7 @@ library
 
   exposed-modules:
     Pure.Control.Cont,
-    Pure.Control.Error,
+    Pure.Control.Except,
     Pure.Control.Reader,
     Pure.Control.State,
     Pure.Control.Writer
@@ -27,5 +27,7 @@ library
   default-extensions:
     RankNTypes
     ConstraintKinds
+    ImplicitParams
+    RecordWildCards
 
   default-language: Haskell2010

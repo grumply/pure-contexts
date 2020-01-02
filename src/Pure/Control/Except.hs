@@ -27,7 +27,7 @@ update msg _ _ =
 view :: Elm (Msg e) => Env e -> Model e -> View
 view (Env f h) (Model me)
   | Just e <- me = h e
-  | otherwise    = let ?except = ErrorC (command . Throw) in f
+  | otherwise    = let ?except = ExceptC (command . Throw) in f
 
 throw :: Except e => e -> IO ()
 throw = throw_ ?except
