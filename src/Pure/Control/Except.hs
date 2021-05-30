@@ -17,7 +17,7 @@ data Model e = Model (Maybe e)
 data Env e = Env (Except e => View) (e -> View)
 
 catch :: Typeable e => (Except e => View) -> (e -> View) -> View
-catch f h = run (App [] [] [] (Model Nothing) update view) (Env f h)
+catch f h = run (App [] [] [] (pure (Model Nothing)) update view) (Env f h)
 
 update :: Msg e -> Env e -> Model e -> IO (Model e)
 update msg _ _ =

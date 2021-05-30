@@ -20,7 +20,7 @@ data Model a = Model (Maybe a) (Cont a => a -> View)
 data Env a = Env (Cont a => View)
 
 runCont :: Typeable a => (Cont a => View) -> (a -> View) -> View
-runCont v f = run (App [] [] [] (Model Nothing f) update view) (Env v)
+runCont v f = run (App [] [] [] (pure (Model Nothing f)) update view) (Env v)
 
 update :: Msg a -> Env a -> Model a -> IO (Model a)
 update msg _ (Model ma f) =

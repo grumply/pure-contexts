@@ -18,7 +18,7 @@ data Model w = Model w
 data Env w = Env (Writer w => View)
 
 runWriter :: (Monoid w, Typeable w) => (Writer w => View) -> View
-runWriter v = run (App [] [] [] (Model mempty) update view) (Env v)
+runWriter v = run (App [] [] [] (pure (Model mempty)) update view) (Env v)
   where
     update msg _ (Model x) =
       case msg of
@@ -33,7 +33,7 @@ hear :: Writer c => c
 hear = hear_ ?writer
 
 listen :: (Writer c, Monoid b, Typeable b) => (b -> c) -> (Writer b => View) -> View
-listen f v = run (App [] [] [] (Model mempty) update view) (Env v)
+listen f v = run (App [] [] [] (pure (Model mempty)) update view) (Env v)
   where
     proxy = tell
     update msg _ (Model x) =

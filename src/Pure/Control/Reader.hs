@@ -17,7 +17,7 @@ data Msg
 data Model = Model
 
 runReader :: Typeable r => (Reader r => View) -> r -> View
-runReader v a = run (App [] [] [] Model update view) (Env v a)
+runReader v a = run (App [] [] [] (pure Model) update view) (Env v a)
 
 update :: Msg -> Env r -> Model -> IO Model
 update _ _ = pure

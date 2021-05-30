@@ -18,7 +18,7 @@ data Model s = Model s
 data Env s = Env (State s => View)
 
 runState :: Typeable s => (State s => View) -> s -> View
-runState v a = run (App [] [] [] (Model a) update view) (Env v)
+runState v a = run (App [] [] [] (pure (Model a)) update view) (Env v)
 
 update :: Msg s -> Env s -> Model s -> IO (Model s)
 update msg _ _ =
