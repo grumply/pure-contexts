@@ -32,5 +32,6 @@ library
     ConstraintKinds
     ImplicitParams
     RecordWildCards
+    FlexibleContexts
 
   default-language: Haskell2010
